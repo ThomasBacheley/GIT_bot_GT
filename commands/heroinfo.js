@@ -31,7 +31,7 @@ module.exports = {
                             emb.addField('Cards :',results[0].cards,true);
                             emb.addField('Merch Item :',results[0].merch_item,true);
 
-                            message.reply({ embeds: [emb] }).then(msg => { setTimeout(() => msg.delete(), 30000); })
+                            message.reply({ embeds: [emb] }).then(msg => { setTimeout(() => msg.delete(), 90000); })
                         }
                     });
             })
