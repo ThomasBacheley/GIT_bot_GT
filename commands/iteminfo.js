@@ -1,13 +1,14 @@
 var { MessageEmbed } = require('discord.js')
 module.exports = {
-    name: 'build',
-    description: 'to get help about a hero build',
-    usage: '.build <heroe name>',
+    name: 'iteminfo',
+    aliases: ['infoitem'],
+    description: 'to get help about a item',
+    usage: '.iteminfo <item name>',
     async run(client, message, args) {
         try {
             setTimeout(() => message.delete(), 3000);
 
-            var emb = new MessageEmbed().setDescription(`[${args[0]}](https://heavenhold.com/heroes/${args[0]})`).setColor('#CFEBD5');
+            var emb = new MessageEmbed().setDescription(`[${args[0]}](https://heavenhold.com/items/${args[0]})`).setColor('#CFEBD5');
             message.reply({ embeds: [emb] }).then(msg => { setTimeout(() => msg.delete(), 30000); })
         } catch (error) {
             message.reply('An error happen, thanks to contact Yweelon as soon as possible').then(msg => { setTimeout(() => msg.delete(), 30000); })
