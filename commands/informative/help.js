@@ -1,6 +1,6 @@
 var { MessageEmbed } = require('discord.js')
 module.exports = {
-    name: 'help',
+    name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
     description: 'to get help about a command',
     usage: '.help <command name>',
     async run(client, message, args) {
@@ -21,7 +21,7 @@ module.exports = {
             }
         } catch (error) {
             message.reply('An error happen, thanks to contact Yweelon as soon as possible').then(msg => { setTimeout(() => msg.delete(), 30000); })
-            console.log('[commands/help.js] L\'erreur suivante à pop :\n' + error.message + '\n\nà cause du message suivant : ' + message.content + ' (par ' + message.author.tag + ')')
+            console.log('[commands/' + __filename.split('/')[__filename.split('/').length - 1].replace('.js', '') + '] L\'erreur suivante à pop :\n' + error.message + '\n\nà cause du message suivant : ' + message.content + ' (par ' + message.author.tag + ')')
         }
     }
 }

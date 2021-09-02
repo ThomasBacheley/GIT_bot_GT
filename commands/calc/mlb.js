@@ -1,5 +1,5 @@
 module.exports = {
-    name: 'mlb',
+    name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
     description: 'allows you to know how much hero crystal is required depending on the number of hero crystal owned',
     usage: '.mlb <number of hero crystal owned>',
     async run(client, message, args) {
@@ -17,7 +17,7 @@ module.exports = {
             }
         } catch (error) {
             message.reply('An error happen, thanks to contact Yweelon as soon as possible').then(msg => { setTimeout(() => msg.delete(), 30000); })
-            console.log('[commands/mlb.js] L\'erreur suivante à pop :\n' + error.message + '\n\nà cause du message suivant : ' + message.content + ' (par ' + message.author.tag + ')')
+            console.log('[commands/' + __filename.split('/')[__filename.split('/').length - 1].replace('.js', '') + '] L\'erreur suivante à pop :\n' + error.message + '\n\nà cause du message suivant : ' + message.content + ' (par ' + message.author.tag + ')')
         }
     }
 }

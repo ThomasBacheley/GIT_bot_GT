@@ -1,6 +1,6 @@
 var { MessageEmbed } = require('discord.js')
 module.exports = {
-    name: 'cmdlist',
+    name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
     description: 'to get list of commands',
     usage: '.cmdlist',
     async run(client, message, args) {
@@ -17,7 +17,7 @@ module.exports = {
             message.reply({ embeds: [emb] }).then(msg => { setTimeout(() => msg.delete(), 30000); })
         } catch (error) {
             message.reply('An error happen, thanks to contact Yweelon as soon as possible').then(msg => { setTimeout(() => msg.delete(), 30000); })
-            console.log('[commands/cmdlist.js] L\'erreur suivante à pop :\n' + error.message + '\n\nà cause du message suivant : ' + message.content + ' (par ' + message.author.tag + ')')
+            console.log('[commands/' + __filename.split('/')[__filename.split('/').length - 1].replace('.js', '') + '] L\'erreur suivante à pop :\n' + error.message + '\n\nà cause du message suivant : ' + message.content + ' (par ' + message.author.tag + ')')
         }
     }
 }
