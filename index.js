@@ -61,74 +61,11 @@ app.use((req, res, next) => {
 
 app.use(express.urlencoded({ extended: true }))
 
-var getBddConnection = require('./functions/getBddConnection')
-
-app.get('/herolist', async (req, res) => {
-    getBddConnection().then((connection) => {
-        connection.connect()
-        connection.query('SELECT name FROM `heroes`',
-            async function (error, results, fields) {
-                if (error) console.log(error)
-                else {
-                    var arr = await results.map(r => r.name)
-                    res.send(arr)
-                }
-            });
-    })
-});
-
-app.get('/paramlist', async (req, res) => {
-    getBddConnection().then((connection) => {
-        connection.connect()
-        connection.query('SELECT * FROM `heroes` WHERE id = ?', [1],
-            async function (error, results, fields) {
-                if (error) console.log(error)
-                else {
-                    var arr = await fields.map(field => field.name).splice(2, fields.length)
-                    res.send(arr)
-                }
-            });
-    })
-});
-
-app.get('/accesorylist', async (req, res) => {
-    getBddConnection().then((connection) => {
-        connection.connect()
-        connection.query('SELECT name,color FROM `accesory_item` ORDER BY FIELD(color,"green","yellow","orange")',
-            async function (error, results, fields) {
-                if (error) console.log(error)
-                else {
-                    res.send(results)
-                }
-            });
-    })
-});
-
-app.get('/merchitemlist', async (req, res) => {
-    getBddConnection().then((connection) => {
-        connection.connect()
-        connection.query('SELECT name,color FROM `merch_item` ORDER BY FIELD(color,"orange","blue")',
-            async function (error, results, fields) {
-                if (error) console.log(error)
-                else {
-                    res.send(results)
-                }
-            });
-    })
-});
-
-app.get('/shieldlist', async (req, res) => {
-    getBddConnection().then((connection) => {
-        connection.connect()
-        connection.query('SELECT name,color FROM `shield_item` ORDER BY FIELD(color,"green","yellow")',
-            async function (error, results, fields) {
-                if (error) console.log(error)
-                else {
-                    res.send(results)
-                }
-            });
-    })
-});
+app.use('/herolist',require('./api/herolist'))
+app.use('/paramlist',require('./api/paramlist'))
+app.use('/accesorylist',require('./api/accesorylist'))
+app.use('/merchitemlist',require('./api/merchitemlist'))
+app.use('/shieldlist',require('./api/shieldlist'))
 
 app.post('/updatehero', (req, res) => {
     //...
@@ -142,7 +79,7 @@ app.post('/updatehero', (req, res) => {
                 }
             });
     })
-    res.send("it's not pretty but it's work (ps: you can go back)");
+    res.sendFile(path.join(__dirname, '/success_page.html'))
     //
 })
 
@@ -165,7 +102,7 @@ app.post('/addhero', (req, res) => {
                                 if (error) console.log(error)
                                 else {
                                     console.log(hero.hero_name + ' ajouter à la base de données !')
-                                    res.send("it's not pretty but it's work (ps: you can go back)");
+                                    res.sendFile(path.join(__dirname, '/success_page.html'))
                                 }
                             });
                     }

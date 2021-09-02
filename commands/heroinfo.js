@@ -31,7 +31,7 @@ module.exports = {
                             emb.addField('Cards :', results[0].cards, true);
                             emb.addField('Merch Item :', results[0].merch_item, true);
 
-                            emb.setDescription('If you have modification suggestion, [click here](http://yweelon.fr/guardiantale.html)');
+                            emb.setDescription('If you have modification suggestion, [click here](http://yweelon.fr/GT_updatehero.html)');
 
                             switch (results[0].type) {
                                 case 'Earth':
