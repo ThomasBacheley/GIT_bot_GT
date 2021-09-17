@@ -47,6 +47,8 @@ client.on('messageCreate', async message => {
     }
 })
 
+var getBddConnection = require('./functions/getBddConnection')
+
 client.login(process.env.BOT_TOKEN);
 
 const express = require('express')
@@ -61,11 +63,11 @@ app.use((req, res, next) => {
 
 app.use(express.urlencoded({ extended: true }))
 
-app.use('/herolist',require('./api/herolist'))
-app.use('/paramlist',require('./api/paramlist'))
-app.use('/accesorylist',require('./api/accesorylist'))
-app.use('/merchitemlist',require('./api/merchitemlist'))
-app.use('/shieldlist',require('./api/shieldlist'))
+app.use('/herolist', require('./api/herolist'))
+app.use('/paramlist', require('./api/paramlist'))
+app.use('/accesorylist', require('./api/accesorylist'))
+app.use('/merchitemlist', require('./api/merchitemlist'))
+app.use('/shieldlist', require('./api/shieldlist'))
 
 app.post('/updatehero', (req, res) => {
     //...
@@ -89,7 +91,7 @@ app.post('/addhero', (req, res) => {
 
     getBddConnection().then((connection) => {
         connection.connect()
-        connection.query('SELECT id FROM `heroes` WHERE name LIKE ?',[hero.hero_name],
+        connection.query('SELECT id FROM `heroes` WHERE name LIKE ?', [hero.hero_name],
             async function (error, results, fields) {
                 if (error) console.log(error)
                 else {

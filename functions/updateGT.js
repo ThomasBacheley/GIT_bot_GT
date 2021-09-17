@@ -3,15 +3,22 @@ var { writeFile } = require('fs')
 
 module.exports = async function (client) {
     try {
+        var today = DateTime.now().toFormat('LLL dd');
+        if (client.data.update_day == today) {
+            client.data.update_day = DateTime.now().plus({ weeks: 2 }).toFormat('LLL dd');
+            var obj_data = JSON.stringify(client.data, '', '\t');
+            writeFile('./data.json', obj_data, err => { if (err) { throw err; } });
+            client.channels.cache.get('749900170417799209').send('It\'s Update Day !')
+        }
         setInterval(() => {
-            var today = DateTime.now().toISO();
+            var today = DateTime.now().toFormat('LLL dd');
             if (client.data.update_day == today) {
-                client.data.update_day = DateTime.now().plus({ weeks: 2 }).toISO();
+                client.data.update_day = DateTime.now().plus({ weeks: 2 }).toFormat('LLL dd');
                 var obj_data = JSON.stringify(client.data, '', '\t');
                 writeFile('./data.json', obj_data, err => { if (err) { throw err; } });
-                client.channels.cache.get('812044534069723206').send('<@&749364889134563430>, It\'s Update Day !')
+                client.channels.cache.get('749900170417799209').send('It\'s Update Day !')
             }
-        }, 86400000)//1 jour
+        }, 18 * 3600000)//18 hours
     } catch (error) {
         throw error
     }
