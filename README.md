@@ -2,11 +2,11 @@
 
 This is a bot made by Yweelon for GreenIceTea.
 
-This bot is center around Guardian Tale Game, he can :
+This bot is center around the game "Guardian Tale", it can :
 
- - Calculate Hero crystal needed or coffee needed for evo stone
+ - Calculate Hero crystal needed or coffee needed for evolution stone
  - Give information about a Hero
- - Give some tips/link to helpfull website
+ - Give some tips thanks to links to helpfull website
  
  List of commands :
 **Informations :**
@@ -24,6 +24,6 @@ This bot is center around Guardian Tale Game, he can :
  - herolist
  - iteminfo
 
-The bot have a API and work with [Yweelon.fr](http://yweelon.fr/) (my website).
+The bot have an API and work with [Yweelon.fr](http://yweelon.fr/).
 
-If you have question, you can mp Yweelon 狐#7127 on discord.
+If you have any questions, you can DM Yweelon 狐#7127 on discord or yweelon#52KP1 on guardian tale.
