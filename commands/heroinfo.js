@@ -18,7 +18,18 @@ module.exports = {
                 connection.query('SELECT * FROM `heroes` WHERE `name` LIKE ? OR  `name` LIKE ? OR `name` LIKE ? OR `name` LIKE ?', [args.join(' '), args.join(' ').toLowerCase(), args.join(''), args.join('').toLowerCase()],
                     function (error, results, fields) {
                         if (error) console.log(error)
-                        else {
+                        if(!results[0]) {
+                            connection.query(`SELECT DISTINCT name FROM \`heroes\` WHERE name LIKE '%${args.join('%')}%'`,
+                            async function (error, results, fields) {
+                                if (error) console.log(error)
+                                if(!results[0]){
+                                    message.reply(`I don't find \`${args.join(' ')}\` in Database`).then(msg => { setTimeout(() => msg.delete(), 15000); })
+                                }else{
+                                    let arr = results.map(el=>el.name)
+                                    message.reply(`You mean maybe \`${arr.slice(0,-1).join(',')+' or '+arr.slice(-1)}\` ?`).then(msg => { setTimeout(() => msg.delete(), 40000); })
+                                }
+                            })
+                        }else {
                             emb.setThumbnail(results[0].pp_link);
                             emb.setAuthor(`${results[0].name} (${results[0].type})`, null, results[0].champion_link);
                             if (results[0].shield != 'NULL') {

@@ -19,7 +19,7 @@ module.exports = {
                         else {
                             var arr_string = await results.map(r => r.name).join(', ')
                             emb.setDescription(arr_string);
-                            emb.setAuthor(`Heroes on Database (${results.length}/35)`);
+                            emb.setAuthor(`Heroes on Database (${results.length}/36)`);
                             message.reply({ embeds: [emb] }).then(msg => { setTimeout(() => msg.delete(), 90000); })
                         }
                     });
