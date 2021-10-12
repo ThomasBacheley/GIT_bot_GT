@@ -8,10 +8,9 @@ module.exports = {
             setTimeout(() => message.delete(), 3000);
             if (!isNaN(args[0])) {
                 var num_evo_stone = parseInt(args[0]);
-                var coffee = num_evo_stone*10;
+                var coffee = Math.floor(num_evo_stone/1.6)*10;
                 // var result = Math.floor(num_evo_stone / Math.floor(client.daily_act / 10));
-                var p_ms = require('pretty-ms')
-                message.reply(`You will need aproximatly ${coffee} coffee !`).then(msg => { setTimeout(() => msg.delete(), 30000); })
+                message.reply(`You will need aproximatly ${coffee} coffee !(max:${num_evo_stone*10})`).then(msg => { setTimeout(() => msg.delete(), 30000); })
 
             } else {
                 message.reply('you didn\'t give a number').then(msg => { setTimeout(() => msg.delete(), 30000); })

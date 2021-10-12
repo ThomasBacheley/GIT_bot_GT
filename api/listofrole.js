@@ -5,11 +5,12 @@ var getBddConnection = require('../functions/getBddConnection')
 router.get('/', async (req, res) => {
     getBddConnection().then((connection) => {
         connection.connect()
-        connection.query('SELECT name,color FROM `merch_item` ORDER BY FIELD(color,"orange","blue")',
+        connection.query('SELECT role FROM `hero_role`',
             async function (error, results, fields) {
                 if (error) console.log(error)
                 else {
-                    res.send(results)
+                    var arr = results.map(r=>r.role)
+                    res.send(arr)
                 }
             });
     })

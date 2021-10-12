@@ -63,26 +63,57 @@ app.use((req, res, next) => {
 
 app.use(express.urlencoded({ extended: true }))
 
-app.use('/herolist', require('./api/herolist'))
-app.use('/paramlist', require('./api/paramlist'))
-app.use('/accesorylist', require('./api/accesorylist'))
-app.use('/merchitemlist', require('./api/merchitemlist'))
-app.use('/shieldlist', require('./api/shieldlist'))
+app.use('/paramlist', require('./api/paramlist'));
+
+app.use('/listoftype', require('./api/listoftype'))
+app.use('/listofrole', require('./api/listofrole'))
+app.use('/listofshield', require('./api/listofshield'))
+app.use('/listofaccesory', require('./api/listofaccesory'))
+app.use('/listofmerch_item', require('./api/listofmerch_item'))
+
+var { DateTime } = require('luxon')
 
 app.post('/updatehero', (req, res) => {
-    //...
     getBddConnection().then((connection) => {
         connection.connect()
-        connection.query("UPDATE heroes SET " + req.body.select_param + " = '" + req.body.Textinpute_value + "' WHERE name = '" + req.body.select_hero + "'",
+        connection.query("SELECT id FROM heroes WHERE name = '" + req.body.select_hero + "'",
             async function (error, results, fields) {
                 if (error) console.log(error)
-                else {
-                    console.log(req.body.select_hero + ' update !');
+                if (results.length == 0) {
+                    res.send('It seems that hero doesn\'t exist in Database')
+                } else {
+                    let query = "UPDATE heroes SET " + req.body.select_param + " = ";
+                    switch (req.body.select_param) {
+                        case 'type':
+                            query += "(SELECT id from hero_type WHERE type = '" + req.body.newvalue + "')";
+                            break;
+                        case 'role':
+                            query += "(SELECT id from hero_role WHERE role = '" + req.body.newvalue + "')";
+                            break;
+                        case 'shield':
+                            query += "(SELECT id from shield_item WHERE name = '" + req.body.newvalue + "')";
+                            break;
+                        case 'accesory':
+                            query += "(SELECT id from accesory_item WHERE name = '" + req.body.newvalue + "')";
+                            break;
+                        case 'merch_item':
+                            query += "(SELECT id from merch_item WHERE name = '" + req.body.newvalue + "')";
+                            break;
+                        default:
+                            query += "'" + req.body.newvalue + "'";
+                            break;
+                    }
+                    connection.query(`${query} WHERE name = '${req.body.select_hero}'`,
+                        async function (error, results, fields) {
+                            if (error) console.log(error)
+                            else {
+                                console.log('Update à ' + DateTime.now().toFormat('dd/LLL- HH:mm') + ' !!', { "Hero": req.body.select_hero, "Parametre modifer": req.body.select_param, "Nouvelle valeur": req.body.newvalue });
+                                res.sendFile(path.join(__dirname, '/success_page.html'))
+                            }
+                        });
                 }
-            });
+            })
     })
-    res.sendFile(path.join(__dirname, '/success_page.html'))
-    //
 })
 
 app.post('/addhero', (req, res) => {
@@ -98,12 +129,12 @@ app.post('/addhero', (req, res) => {
                     if (results[0]) {
                         res.send('This Hero is already in the DataBase !')
                     } else {
-                        connection.query('INSERT INTO heroes (`name`,`type`,`role`,`weapon`,`shield`,`accesory`,`cards`,`merch_item`,`pp_link`,`champion_link`) VALUES (?,?,?,?,?,?,?,?,?,?)',
+                        connection.query('INSERT INTO `heroes`(`name`, `type`, `role`, `weapon`, `shield`, `accesory`, `cards`, `merch_item`, `pp_link`, `champion_link`) VALUES (?,(SELECT id from hero_type WHERE hero_type.type = ?),(SELECT id from hero_role WHERE hero_role.role = ?),?,(SELECT id from shield_item WHERE shield_item.name = ?),(SELECT id from accesory_item WHERE accesory_item.name = ?),?,(SELECT id from merch_item WHERE merch_item.name=?),?,?)',
                             [hero.hero_name, hero.hero_type, hero.hero_role, hero.weapon_name, hero.shield_name, hero.accesory_name, hero.cards_name, hero.merchitem_name, hero.pp_link, hero.champion_link],
                             function (error, results, fields) {
                                 if (error) console.log(error)
                                 else {
-                                    console.log(hero.hero_name + ' ajouter à la base de données !')
+                                    console.log(hero.hero_name + ' ajouter à la base de données à ' + DateTime.now().toFormat('dd/LLL- HH:mm') + '!')
                                     res.sendFile(path.join(__dirname, '/success_page.html'))
                                 }
                             });
