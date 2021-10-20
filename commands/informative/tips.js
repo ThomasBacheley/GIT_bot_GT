@@ -3,7 +3,7 @@ var { MessageEmbed } = require('discord.js');
 module.exports = {
     name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
     description: 'allows you to know some tips',
-    usage: '.tips',
+    usage: '!tips',
     async run(client, message, args) {
         try {
             setTimeout(() => message.delete(), 3000);

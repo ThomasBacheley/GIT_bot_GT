@@ -2,7 +2,7 @@ var { MessageEmbed } = require('discord.js')
 module.exports = {
     name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
     description: 'to get list of commands',
-    usage: '.cmdlist',
+    usage: '!cmdlist',
     async run(client, message, args) {
         try {
             setTimeout(() => message.delete(), 3000);

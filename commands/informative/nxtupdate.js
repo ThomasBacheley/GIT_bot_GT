@@ -4,7 +4,7 @@ module.exports = {
     name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
     aliases: ['next_update', 'nextupdate'],
     description: 'allows you to know when is the newt update',
-    usage: '.nxtupdate',
+    usage: '!nxtupdate',
     async run(client, message, args) {
         try {
             setTimeout(() => message.delete(), 3000);

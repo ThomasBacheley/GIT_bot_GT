@@ -1,10 +1,10 @@
 var { MessageEmbed } = require('discord.js');
-var getBddconnection = require('../functions/getBddConnection');
+var getBddconnection = require('../../functions/getBddConnection')
 
 module.exports = {
     name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
-    description: 'allows you to know whats heroes are in DB',
-    usage: '.herolist',
+    description: 'allows you to know whats team are in DB',
+    usage: '!teamlist',
     async run(client, message, args) {
         try {
             setTimeout(() => message.delete(), 3000);
@@ -13,13 +13,13 @@ module.exports = {
 
             getBddconnection().then((connection) => {
                 connection.connect()
-                connection.query('SELECT name FROM `heroes`',
+                connection.query('SELECT team_name FROM `team`',
                     async function (error, results, fields) {
                         if (error) console.log(error)
                         else {
-                            var arr_string = await results.map(r => r.name).join(', ')
+                            var arr_string = await results.map(r => r.team_name).join(', ')
                             emb.setDescription(arr_string);
-                            emb.setAuthor(`Heroes on Database (${results.length}/36)`);
+                            emb.setAuthor(`Team on Database (${results.length})`);
                             message.reply({ embeds: [emb] }).then(msg => { setTimeout(() => msg.delete(), 90000); })
                         }
                     });

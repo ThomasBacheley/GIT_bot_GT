@@ -3,7 +3,7 @@ module.exports = {
     name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
     aliases: ['infoitem'],
     description: 'to get help about a item',
-    usage: '.iteminfo <item name>',
+    usage: '!iteminfo <item name>',
     async run(client, message, args) {
         try {
             setTimeout(() => message.delete(), 3000);

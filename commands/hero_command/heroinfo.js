@@ -1,5 +1,5 @@
 var { MessageEmbed } = require('discord.js');
-var getBddconnection = require('../functions/getBddConnection');
+var getBddconnection = require('../../functions/getBddConnection')
 //-------------
 var orange_emote = ' <:orange_star:897208612143898644>'
 var yellow_emote = ' <:yellow_star:897208611812540427>'
@@ -10,7 +10,7 @@ module.exports = {
     name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
     aliases: ['infohero'],
     description: 'to get info about a hero',
-    usage: '.heroinfo <hero name>',
+    usage: '!heroinfo <hero name>',
     async run(client, message, args) {
         try {
             setTimeout(() => message.delete(), 3000);

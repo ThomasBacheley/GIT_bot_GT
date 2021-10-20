@@ -1,9 +1,9 @@
-var getBddconnection = require('../functions/getBddConnection');
+var getBddconnection = require('../../functions/getBddConnection')
 
 module.exports = {
     name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
     description: 'to add info about a hero in database',
-    usage: '.addhero {"name":"hero_name","role":"hero_role(Tank,MeleeDPS,RangeDPS,Support,Healer)","weapon":"hero weapon","shield":"NULL or hero shield name","accesory":"hero accesory","cards":"2x cards","merch_item":"hero merchitem","pp_link":"link to champion pfp","champion_link":"link to champion(heavenhold.com)"}',
+    usage: '!addhero {"name":"hero_name","role":"hero_role(Tank,MeleeDPS,RangeDPS,Support,Healer)","weapon":"hero weapon","shield":"NULL or hero shield name","accesory":"hero accesory","cards":"2x cards","merch_item":"hero merchitem","pp_link":"link to champion pfp","champion_link":"link to champion(heavenhold.com)"}',
     async run(client, message, args) {
         try {
             setTimeout(() => message.delete(), 3000);

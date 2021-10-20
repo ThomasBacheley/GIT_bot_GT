@@ -1,7 +1,7 @@
 module.exports = {
     name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
     description: 'allows you to know how much hero crystal is required depending on the number of hero crystal owned',
-    usage: '.mlb <number of hero crystal owned>',
+    usage: '!mlb <number of hero crystal owned>',
     async run(client, message, args) {
         try {
             setTimeout(() => message.delete(), 3000);

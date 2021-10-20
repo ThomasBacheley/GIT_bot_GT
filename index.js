@@ -107,7 +107,9 @@ app.post('/updatehero', (req, res) => {
                         async function (error, results, fields) {
                             if (error) console.log(error)
                             else {
-                                console.log('Update à ' + DateTime.now().toFormat('dd/LLL- HH:mm') + ' !!', { "Hero": req.body.select_hero, "Parametre modifer": req.body.select_param, "Nouvelle valeur": req.body.newvalue });
+                                let complement = ''
+                                if (req.body.username != '') { complement += ` par ${req.body.username}` }
+                                console.log('Update le ' + DateTime.now().toFormat('dd/LLL- HH:mm') + complement + '\n', { "Hero": req.body.select_hero, "Parametre modifer": req.body.select_param, "Nouvelle valeur": req.body.newvalue });
                                 res.sendFile(path.join(__dirname, '/success_page.html'))
                             }
                         });
@@ -134,7 +136,9 @@ app.post('/addhero', (req, res) => {
                             function (error, results, fields) {
                                 if (error) console.log(error)
                                 else {
-                                    console.log(hero.hero_name + ' ajouter à la base de données à ' + DateTime.now().toFormat('dd/LLL- HH:mm') + '!')
+                                    let complement = ''
+                                    if (req.body.username != '') { complement += ` par ${req.body.username}` }
+                                    console.log(hero.hero_name + ' ajouter à la base de données le ' + DateTime.now().toFormat('dd/LLL- HH:mm') + complement + '!')
                                     res.sendFile(path.join(__dirname, '/success_page.html'))
                                 }
                             });

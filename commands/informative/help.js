@@ -2,7 +2,7 @@ var { MessageEmbed } = require('discord.js')
 module.exports = {
     name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
     description: 'to get help about a command',
-    usage: '.help <command name>',
+    usage: '!help <command name>',
     async run(client, message, args) {
         try {
             setTimeout(() => message.delete(), 3000);
