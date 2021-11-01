@@ -3,6 +3,7 @@ var getBddconnection = require('../../functions/getBddConnection')
 
 module.exports = {
     name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
+    enable:true,
     description: 'allows you to know whats heroes are in DB',
     usage: '!herolist',
     async run(client, message, args) {

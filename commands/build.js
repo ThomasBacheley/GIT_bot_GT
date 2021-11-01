@@ -1,6 +1,7 @@
 var { MessageEmbed } = require('discord.js')
 module.exports = {
     name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
+    enable:false,
     description: 'to get help about a hero build',
     usage: '!build <heroe name>',
     async run(client, message, args) {

@@ -18,13 +18,18 @@ client.on('ready', () => {
         ////----
         walkSync('./commands', function (filePath, stat) {
             var cmd_get = require('./' + filePath)
-            client.commands.set(cmd_get.name, cmd_get);
-            if (cmd_get.aliases) {
-                cmd_get.aliases.forEach(aliase => { client.aliases.set(aliase, cmd_get); })
+            if (cmd_get.enable) {
+                client.commands.set(cmd_get.name, cmd_get);
+                if (cmd_get.aliases) {
+                    cmd_get.aliases.forEach(aliase => { client.aliases.set(aliase, cmd_get); })
+                }
             }
         });
         ////----
         require('./functions/updateGT')(client)
+
+        client.main_channel_ID = '749900170417799209'
+
     } catch (error) {
         console.log(error)
     }
@@ -33,6 +38,7 @@ client.on('ready', () => {
 client.on('messageCreate', async message => {
     try {
         if (message.author.bot) return;
+        if (message.channel.id != client.main_channel_ID) return;
         if (message.content.startsWith(client.prefix)) {
             var msgArray = message.content.split(" ")
             var command = msgArray[0]
@@ -73,6 +79,8 @@ app.use('/listofmerch_item', require('./api/listofmerch_item'))
 
 var { DateTime } = require('luxon')
 
+var resendmessageUpdate = require('./functions/resendmessageUpdate')
+
 app.post('/updatehero', (req, res) => {
     getBddConnection().then((connection) => {
         connection.connect()
@@ -111,6 +119,7 @@ app.post('/updatehero', (req, res) => {
                                 if (req.body.username != '') { complement += ` par ${req.body.username}` }
                                 console.log('Update le ' + DateTime.now().toFormat('dd/LLL- HH:mm') + complement + '\n', { "Hero": req.body.select_hero, "Parametre modifer": req.body.select_param, "Nouvelle valeur": req.body.newvalue });
                                 res.sendFile(path.join(__dirname, '/success_page.html'))
+                                resendmessageUpdate(client, req.body.select_hero, req.body.username)
                             }
                         });
                 }

@@ -2,6 +2,7 @@ var { DateTime, Interval } = require('luxon')
 var p_ms = require('pretty-ms')
 module.exports = {
     name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
+    enable:true,
     aliases: ['next_update', 'nextupdate'],
     description: 'allows you to know when is the newt update',
     usage: '!nxtupdate',

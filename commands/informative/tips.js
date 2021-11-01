@@ -2,6 +2,7 @@ var { MessageEmbed } = require('discord.js');
 
 module.exports = {
     name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
+    enable:true,
     description: 'allows you to know some tips',
     usage: '!tips',
     async run(client, message, args) {
@@ -16,7 +17,8 @@ module.exports = {
             .addField('Heavenhold.com','[here](https://heavenhold.com/)',true)
             .addField('Official Website','[here](https://guardiantales.com/)',true)
             .addField('Official Twitter','[here](https://twitter.com/GuardianTalesEN/)',true)
-
+            .addField('Patch Notes','[here (KR)](https://m.cafe.daum.net/GuardianTales/AgPr) | [here (EN)](https://guardiantalesguides.com/game/patches/listing)',true)
+            
             message.reply({ embeds: [emb] }).then(msg => { setTimeout(() => msg.delete(), 90000); })
 
         } catch (error) {

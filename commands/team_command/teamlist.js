@@ -3,6 +3,7 @@ var getBddconnection = require('../../functions/getBddConnection')
 
 module.exports = {
     name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
+    enable:false,
     description: 'allows you to know whats team are in DB',
     usage: '!teamlist',
     async run(client, message, args) {

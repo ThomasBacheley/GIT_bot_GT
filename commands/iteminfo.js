@@ -1,6 +1,7 @@
 var { MessageEmbed } = require('discord.js')
 module.exports = {
     name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
+    enable:false,
     aliases: ['infoitem'],
     description: 'to get help about a item',
     usage: '!iteminfo <item name>',

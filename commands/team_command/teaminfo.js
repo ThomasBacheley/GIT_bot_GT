@@ -4,6 +4,7 @@ var getBddconnection = require('../../functions/getBddConnection')
 
 module.exports = {
     name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
+    enable:false,
     aliases: ['infoteam'],
     description: 'to get info about a team',
     usage: '!teaminfo <team name>',

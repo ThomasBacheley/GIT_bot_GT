@@ -8,6 +8,7 @@ var green_emote = '  <:green_star:897208612039053322>'
 
 module.exports = {
     name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
+    enable:true,
     aliases: ['infohero'],
     description: 'to get info about a hero',
     usage: '!heroinfo <hero name>',
@@ -35,7 +36,6 @@ module.exports = {
                                     }
                                 })
                         } else {
-                            console.log()
                             emb.setThumbnail(results[0].pp_link);
                             emb.setAuthor(`${results[0].name} (${results[0].type})`, null, results[0].champion_link);
                             emb.setColor(results[0].type_hexcode);

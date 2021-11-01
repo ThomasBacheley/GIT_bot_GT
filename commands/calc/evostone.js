@@ -1,5 +1,6 @@
 module.exports = {
     name: __filename.split('/')[__filename.split('/').length - 1].replace('.js', ''),
+    enable:true,
     aliases: ['evo_stone'],
     description: 'allows you to know how much coffee is required depending on the desired number of stones',
     usage: '!evostone <number of evo stone>',
