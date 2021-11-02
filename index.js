@@ -140,8 +140,8 @@ app.post('/addhero', (req, res) => {
                     if (results[0]) {
                         res.send('This Hero is already in the DataBase !')
                     } else {
-                        connection.query('INSERT INTO `heroes`(`name`, `type`, `role`, `weapon`, `shield`, `accesory`, `cards`, `merch_item`, `pp_link`, `champion_link`) VALUES (?,(SELECT id from hero_type WHERE hero_type.type = ?),(SELECT id from hero_role WHERE hero_role.role = ?),?,(SELECT id from shield_item WHERE shield_item.name = ?),(SELECT id from accesory_item WHERE accesory_item.name = ?),?,(SELECT id from merch_item WHERE merch_item.name=?),?,?)',
-                            [hero.hero_name, hero.hero_type, hero.hero_role, hero.weapon_name, hero.shield_name, hero.accesory_name, hero.cards_name, hero.merchitem_name, hero.pp_link, hero.champion_link],
+                        connection.query('INSERT INTO `heroes`(`name`, `type`, `role`, `shield`, `accesory`, `cards`, `merch_item`, `pp_link`, `champion_link`) VALUES (?,(SELECT id from hero_type WHERE hero_type.type = ?),(SELECT id from hero_role WHERE hero_role.role = ?),(SELECT id from shield_item WHERE shield_item.name = ?),(SELECT id from accesory_item WHERE accesory_item.name = ?),?,(SELECT id from merch_item WHERE merch_item.name=?),?,?)',
+                            [hero.hero_name, hero.hero_type, hero.hero_role, hero.shield_name, hero.accesory_name, hero.cards_name, hero.merchitem_name, hero.pp_link, hero.champion_link],
                             function (error, results, fields) {
                                 if (error) console.log(error)
                                 else {
