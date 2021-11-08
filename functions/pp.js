@@ -1,10 +1,7 @@
 module.exports = async function (client) {
     try {
-        var nbr_pp = 0;
         setInterval(() => {
-            if (nbr_pp == 0) { nbr_pp++ }
-            else { nbr_pp-- }
-            client.user.setAvatar(`../assets/${nbr_pp}.png`);
+            client.user.setAvatar(`/home/pi/GIT_bot_GT/assets/${Math.floor(Math.random() * 2)}.png`);
         }, getrnd() * 3600 * 1000);
     } catch (error) {
         throw error

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-var getBddConnection = require('../functions/getBddConnection')
+var getBddConnection = require('../../functions/getBddConnection')
 
 router.get('/', async (req, res) => {
     getBddConnection().then((connection) => {
@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
             async function (error, results, fields) {
                 if (error) console.log(error)
                 else {
-                    var arr = await fields.filter(field => field.name != 'id' && field.name != 'name' && field.name !='weapon').map(field => field.name);
+                    var arr = await fields.filter(field => field.name != 'id' && field.name !='weapon').map(field => field.name);
                     res.send(arr)
                 }
             });
