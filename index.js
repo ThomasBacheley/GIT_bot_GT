@@ -60,7 +60,12 @@ var getBddConnection = require('./functions/getBddConnection')
 client.login(process.env.BOT_TOKEN);
 
 const express = require('express')
+var bodyParser = require('body-parser')
+
+var jsonParser = bodyParser.json()
+
 const app = express()
+
 
 app.get('/', (req, res) => { res.send('Hello World!') });
 
@@ -78,6 +83,7 @@ app.use('/listofshield', require('./api/GET/listofshield'))
 app.use('/listofaccesory', require('./api/GET/listofaccesory'))
 app.use('/listofmerch_item', require('./api/GET/listofmerch_item'))
 app.use('/listofexweapontype', require('./api/GET/listofexweapontype'))
+app.use('/gethero',require('./api/GET/gethero'))
 //#endregion
 //#region POST
 app.use('/updatehero', require('./api/POST/updatehero'))
