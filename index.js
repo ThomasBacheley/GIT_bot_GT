@@ -87,7 +87,7 @@ app.use('/gethero',require('./api/GET/gethero'))
 //#endregion
 //#region POST
 app.use('/updatehero', require('./api/POST/updatehero'))
-app.use('/updatehero', require('./api/POST/addhero'))
+app.use('/addhero', require('./api/POST/addhero'))
 //#endregion
 
 app.listen(8084, () => { console.log(`Example app listening at http://localhost:8084`) })

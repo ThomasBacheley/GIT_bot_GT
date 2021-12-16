@@ -18,7 +18,7 @@ module.exports = {
 
                 getBddconnection().then((connection) => {
                     connection.connect()
-                    connection.query(`SELECT DISTINCT heroes.name,ex_weapon.name as 'ex_weapon',ex_weapon.link as 'ex_weapon_link',ex_weapon.emote_type as 'ex_weapon_type',hero_pic,hero_type.type,hero_type.hexcode AS 'type_hexcode',hero_role.role,hero_role.emote AS 'role_emote',weapon,pp_link,hero_link from heroes LEFT JOIN ex_weapon ON heroes.weapon=ex_weapon.id LEFT JOIN hero_type ON heroes.type = hero_type.id LEFT JOIN hero_role ON heroes.role = hero_role.id WHERE heroes.name LIKE '%${args.join(' ')}%'`,
+                    connection.query(`SELECT DISTINCT heroes.name,ex_weapon.name as 'ex_weapon',ex_weapon.link as 'ex_weapon_link',ex_weapon.emote_type as 'ex_weapon_type',hero_pic,hero_type.type,hero_type.hexcode AS 'type_hexcode',hero_role.role,hero_role.emote AS 'role_emote',weapon,pp_link,hero_link from heroes LEFT JOIN ex_weapon ON heroes.weapon=ex_weapon.id LEFT JOIN hero_type ON heroes.type = hero_type.id LEFT JOIN hero_role ON heroes.role = hero_role.id WHERE heroes.name LIKE '%${args.join(' ')}%' OR heroes.nickname LIKE '%${args.join(' ')}%'`,
                         function (error, results, fields) {
                             if (error) console.log(error)
                             if (!results[0]) {

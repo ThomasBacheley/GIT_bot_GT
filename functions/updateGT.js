@@ -18,7 +18,7 @@ module.exports = async function (client) {
                 writeFile('./data.json', obj_data, err => { if (err) { throw err; } });
                 client.channels.cache.get('749900170417799209').send('It\'s Update Day !')
             }
-        }, 18 * 3600000)//18 hours
+        }, 1 * 3600000)//1 hours
     } catch (error) {
         throw error
     }
