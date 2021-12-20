@@ -30,7 +30,7 @@ client.on('ready', () => {
             }
         });
         ////----
-        require('./functions/updateGT')(client)
+        require('./functions/updateGT')(client);
 
     } catch (error) {
         console.log(error)
@@ -85,6 +85,7 @@ app.use('/listofmerch_item', require('./api/GET/listofmerch_item'))
 app.use('/listofexweapontype', require('./api/GET/listofexweapontype'))
 app.use('/gethero',require('./api/GET/gethero'))
 app.use('/herolist',require('./api/GET/herolist'))
+app.use('/getinfosite',require('./api/GET/getinfosite'))
 //#endregion
 //#region POST
 app.use('/updatehero', require('./api/POST/updatehero'))
