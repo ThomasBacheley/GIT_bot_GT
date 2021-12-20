@@ -84,6 +84,7 @@ app.use('/listofaccesory', require('./api/GET/listofaccesory'))
 app.use('/listofmerch_item', require('./api/GET/listofmerch_item'))
 app.use('/listofexweapontype', require('./api/GET/listofexweapontype'))
 app.use('/gethero',require('./api/GET/gethero'))
+app.use('/herolist',require('./api/GET/herolist'))
 //#endregion
 //#region POST
 app.use('/updatehero', require('./api/POST/updatehero'))

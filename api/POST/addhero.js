@@ -1,5 +1,6 @@
 const router = require('express').Router();
 var { DateTime } = require('luxon')
+var verifBDDinput = require('../../functions/verifBDDinput')
 
 var getBddConnection = require('../../functions/getBddConnection')
 
@@ -80,8 +81,9 @@ router.post('/', async (req, res) => {
                                         }else{
                                             query_value.push(hero.hero_pic.toString());
                                         }
-                                        
 
+                                        let r = verifBDDinput(query_value);
+                                        if(r) { res.send('Bien joué , mais ça n\'as pas pété')}
                                         //#endregion
                                         connection.query(q,query_value,
                                             function (error, results, fields) {

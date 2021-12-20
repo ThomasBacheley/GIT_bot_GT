@@ -13,6 +13,8 @@ router.post('/', async (req, res) => {
                     res.send('It seems that hero doesn\'t exist in Database')
                 } else {
                     let query = "UPDATE heroes SET " + req.body.select_param + " = ";
+                    let r = verifBDDinput([req.body.select_param, req.body.newvalue]);
+                    if (r) { res.send('Bien joué , mais ça n\'as pas pété') }
                     switch (req.body.select_param) {
                         case 'type':
                             query += "(SELECT id from hero_type WHERE type = '" + req.body.newvalue + "')";

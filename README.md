@@ -7,22 +7,6 @@ This bot is center around the game "Guardian Tale", it can :
  - Calculate Hero crystal needed or coffee needed for evolution stone
  - Give information about a Hero
  - Give some tips thanks to links to helpfull website
- 
- List of commands :
-**Informations :**
- - help
- - cmdlist
- - nxtupdate
- - tips
-**Calcul :**
- - evostone
- - mlb
-**DataBase / Hero Informations :**
- - addhero
- - build
- - heroinfo
- - herolist
- - iteminfo
 
 The bot have an API and work with [Yweelon.fr](http://yweelon.fr/).
 
