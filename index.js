@@ -86,6 +86,7 @@ app.use('/listofexweapontype', require('./api/GET/listofexweapontype'))
 app.use('/gethero',require('./api/GET/gethero'))
 app.use('/herolist',require('./api/GET/herolist'))
 app.use('/getinfosite',require('./api/GET/getinfosite'))
+app.use('/getallheroinfo',require('./api/GET/getallheroinfo'))
 //#endregion
 //#region POST
 app.use('/updatehero', require('./api/POST/updatehero'))

@@ -2,6 +2,7 @@ const router = require('express').Router();
 var { DateTime } = require('luxon')
 
 var getBddConnection = require('../../functions/getBddConnection')
+var verifBDDinput = require('../../functions/verifBDDinput')
 
 router.post('/', async (req, res) => {
     getBddConnection().then((connection) => {
@@ -13,8 +14,8 @@ router.post('/', async (req, res) => {
                     res.send('It seems that hero doesn\'t exist in Database')
                 } else {
                     let query = "UPDATE heroes SET " + req.body.select_param + " = ";
-                    let r = verifBDDinput([req.body.select_param, req.body.newvalue]);
-                    if (r) { res.send('Bien joué , mais ça n\'as pas pété') }
+                    let r = await verifBDDinput([req.body.select_param, req.body.newvalue]);
+                    if (r) { res.send('Bien joué , mais ça n\'as pas pété');return }
                     switch (req.body.select_param) {
                         case 'type':
                             query += "(SELECT id from hero_type WHERE type = '" + req.body.newvalue + "')";
@@ -42,7 +43,7 @@ router.post('/', async (req, res) => {
                                 let complement = ''
                                 if (req.body.username != '') { complement += ` par ${req.body.username}` }
                                 console.log('Update le ' + DateTime.now().toFormat('dd/LLL- HH:mm') + complement + '\n', { "Hero": req.body.select_hero, "Parametre modifer": req.body.select_param, "Nouvelle valeur": req.body.newvalue });
-                                res.sendFile('/home/pi/GIT_bot_GT/success_page.html')
+                                res.redirect(301,'http://yweelon.fr/GT_updatehero.php')
                             }
                         });
                 }

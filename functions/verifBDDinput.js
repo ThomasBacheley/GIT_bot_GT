@@ -13,6 +13,7 @@ module.exports = async function (query_value) {
             word.forEach(w => {
                 if(lock) { return }
                 if (val.toLowerCase().search(w) != -1) {
+                    console.log(val,w)
                     lock = true;
                     return true;
                 }

@@ -82,8 +82,8 @@ router.post('/', async (req, res) => {
                                             query_value.push(hero.hero_pic.toString());
                                         }
 
-                                        let r = verifBDDinput(query_value);
-                                        if(r) { res.send('Bien joué , mais ça n\'as pas pété')}
+                                        let r = await verifBDDinput(query_value);
+                                        if(r) { res.send('Bien joué , mais ça n\'as pas pété');return}
                                         //#endregion
                                         connection.query(q,query_value,
                                             function (error, results, fields) {
@@ -92,7 +92,7 @@ router.post('/', async (req, res) => {
                                                     let complement = ''
                                                     if (req.body.username != '') { complement += ` par ${req.body.username}` }
                                                     console.log(hero.hero_name + ' ajouter à la base de données le ' + DateTime.now().toFormat('dd/LLL- HH:mm') + complement + '!')
-                                                    res.sendFile('/home/pi/GIT_bot_GT/success_page.html')
+                                                    res.redirect(301,'http://yweelon.fr/GT_addhero.php')
                                                 }
                                             });
                                     }
