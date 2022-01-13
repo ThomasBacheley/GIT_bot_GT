@@ -42,10 +42,10 @@ module.exports = {
                                 emb.addField('Role :', `${results[0].role} ${results[0].role_emote}`, true);
                                 emb.addField('Weapon :', `${results[0].ex_weapon} ${results[0].ex_weapon_type} ([?](${results[0].ex_weapon_link} "check the weapon on internet"))`, true);
 
-                                emb.setDescription('If you have modification suggestion, [click here](http://yweelon.fr/GT_updatehero.html?heroname=' + results[0].name.replace(' ', '_').replace(' ', '_').replace(' ', '_').replace(' ', '_').replace(' ', '_') + ')');
+                                emb.setDescription('If you have modification suggestion, [click here](http://yweelon.fr/GT_updatehero.php?heroname=' + results[0].name.replace(' ', '_').replace(' ', '_').replace(' ', '_').replace(' ', '_').replace(' ', '_') + ')');
                                 // emb.setFooter('(PS: If you don\'t see the field `cards` or `accesory`, it\'s because they aren\'t informing !)')
 
-                                message.reply({ embeds: [emb] }).then(msg => { setTimeout(() => msg.delete(), 90000); })
+                                message.reply({ embeds: [emb] }).then(msg => { setTimeout(() => msg.delete(), client.configuration.cmd.timeout); })
                             }
                         });
                 })

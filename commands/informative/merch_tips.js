@@ -18,7 +18,7 @@ module.exports = {
             .addField('Example','FK : basic element blue merch until you manage to get a high evolution/level statue\nKamael : Do the same if you want him dps or LP figurine to be extra tanky')
         
 
-            message.reply({ embeds: [emb] }).then(msg => { setTimeout(() => msg.delete(), 90000); })
+            message.reply({ embeds: [emb] }).then(msg => { setTimeout(() => msg.delete(), client.configuration.cmd.timeout); })
 
         } catch (error) {
             message.reply('An error happen, thanks to contact Yweelon as soon as possible').then(msg => { setTimeout(() => msg.delete(), 30000); })

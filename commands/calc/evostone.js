@@ -11,7 +11,7 @@ module.exports = {
                 var num_evo_stone = parseInt(args[0]);
                 var coffee = Math.floor(num_evo_stone/1.6)*10;
                 // var result = Math.floor(num_evo_stone / Math.floor(client.daily_act / 10));
-                message.reply(`You will need aproximatly ${coffee} coffee !(max:${num_evo_stone*10})`).then(msg => { setTimeout(() => msg.delete(), 30000); })
+                message.reply(`You will need aproximatly ${coffee} coffee !(max:${num_evo_stone*10})`).then(msg => { setTimeout(() => msg.delete(), client.configuration.cmd.timeout); })
 
             } else {
                 message.reply('you didn\'t give a number').then(msg => { setTimeout(() => msg.delete(), 30000); })

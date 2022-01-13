@@ -16,7 +16,7 @@ module.exports = {
                     .setColor('#CFEBD5')
                     .addField('Description :', cmd.description, true);
 
-                message.reply({ embeds: [emb] }).then(msg => { setTimeout(() => msg.delete(), 30000); })
+                message.reply({ embeds: [emb] }).then(msg => { setTimeout(() => msg.delete(), client.configuration.cmd.timeout); })
             } else {
                 message.reply('i didn\'t find the command').then(msg => { setTimeout(() => msg.delete(), 30000); })
             }

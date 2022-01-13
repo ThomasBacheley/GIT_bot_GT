@@ -19,7 +19,7 @@ module.exports = {
                     function (error, results, fields) {
                         if (error) console.log(error)
                         else {
-                            message.reply(`Hero \`${hero.name}\` added to Database`).then(msg => { setTimeout(() => msg.delete(), 30000); })
+                            message.reply(`Hero \`${hero.name}\` added to Database`).then(msg => { setTimeout(() => msg.delete(), client.configuration.cmd.timeout); })
                         }
                     });
             })

@@ -19,9 +19,9 @@ module.exports = {
                 var daily_point = (180 * 3) + ((100 / 10) * 100) + ((140 / 10) * 100) + (9 * 60)
 
                 if (Number.isInteger(args[0] / daily_point)) {
-                    message.reply(`${Math.round((args[0] / pts_per_run) * 10)} coffee is required (or ${args[0] / daily_point} day(s))`).then(msg => { setTimeout(() => msg.delete(), 30000); })
+                    message.reply(`${Math.round((args[0] / pts_per_run) * 10)} coffee is required (or ${args[0] / daily_point} day(s))`).then(msg => { setTimeout(() => msg.delete(), client.configuration.cmd.timeout); })
                 } else {
-                    message.reply(`${Math.round((args[0] / pts_per_run) * 10)} coffee is required`).then(msg => { setTimeout(() => msg.delete(), 30000); })
+                    message.reply(`${Math.round((args[0] / pts_per_run) * 10)} coffee is required`).then(msg => { setTimeout(() => msg.delete(), client.configuration.cmd.timeout); })
                 }
 
             } else {

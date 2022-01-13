@@ -18,7 +18,7 @@ module.exports = {
                 var nbr_run_moyenne = Math.floor(80 / (Math.floor(average(data))));
                 var nbr_run_maximum = Math.floor(80 / Math.max(...data));
 
-                message.reply(`${Math.floor(hero_crystal * nbr_run_maximum) * 10}-${Math.floor(hero_crystal * nbr_run_minimum) * 10} coffee (aproximatly) to have ${hero_crystal} hero crystal (mid:${Math.floor(hero_crystal * nbr_run_moyenne) * 10})`).then(msg => { setTimeout(() => msg.delete(), 30000); })
+                message.reply(`${Math.floor(hero_crystal * nbr_run_maximum) * 10}-${Math.floor(hero_crystal * nbr_run_minimum) * 10} coffee (aproximatly) to have ${hero_crystal} hero crystal (mid:${Math.floor(hero_crystal * nbr_run_moyenne) * 10})`).then(msg => { setTimeout(() => msg.delete(), client.configuration.cmd.timeout); })
 
             } else {
                 message.reply('you didn\'t give a number').then(msg => { setTimeout(() => msg.delete(), 30000); })

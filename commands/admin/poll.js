@@ -21,7 +21,7 @@ module.exports = {
         try {
             setTimeout(() => message.delete(), 3000);
 
-            if (client.AdminUserId.includes(message.author.id)) {
+            if (client.configuration.admin.includes(message.author.id)) {
                 var embed = new MessageEmbed()
                     .setColor('GREEN')
                     .setAuthor(`Poll by ${message.author.username}`, message.author.avatarURL())

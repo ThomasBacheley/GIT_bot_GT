@@ -17,9 +17,9 @@ module.exports = {
             .addField('Heavenhold.com','[here](https://heavenhold.com/)',true)
             .addField('Official Website','[here](https://guardiantales.com/)',true)
             .addField('Official Twitter','[here](https://twitter.com/GuardianTalesEN/)',true)
-            .addField('Patch Notes','[here (KR)](https://m.cafe.daum.net/GuardianTales/AgPr) | [here (EN)](https://guardiantalesguides.com/game/patches/listing)',true)
+            .addField('Patch Notes','[here (KR)](https://m.cafe.daum.net/GuardianTales/AgPr/'+client.data.kr_patch_number+') | [here (EN)](https://guardiantalesguides.com/game/patches/listing)',true)
             
-            message.reply({ embeds: [emb] }).then(msg => { setTimeout(() => msg.delete(), 90000); })
+            message.reply({ embeds: [emb] }).then(msg => { setTimeout(() => msg.delete(), client.configuration.cmd.timeout); })
 
         } catch (error) {
             message.reply('An error happen, thanks to contact Yweelon as soon as possible').then(msg => { setTimeout(() => msg.delete(), 30000); })

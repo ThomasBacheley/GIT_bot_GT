@@ -6,7 +6,7 @@ module.exports = {
     async run(client, message, args) {
         try {
             let msg_cmd = message
-            if (client.AdminUserId.includes(message.author.id)) {
+            if (client.configuration.admin.includes(message.author.id)) {
                 if (!isNaN(args[0])) {
                     let temp_nbr = 0;
                     message.channel.messages.fetch().then(messages=>{
@@ -17,7 +17,7 @@ module.exports = {
                                     setTimeout(() => message.delete(), 1000);
                                 }
                                 if(temp_nbr==parseInt(args[0])){
-                                    setTimeout(() => msg_cmd.delete(), 5000);
+                                    setTimeout(() => msg_cmd.delete(), client.configuration.cmd.timeout);
                                     message.reply(temp_nbr+' message(s) deleted').then(msg => { setTimeout(() => msg.delete(), 10000); })
                                 }
                             }

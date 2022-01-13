@@ -19,9 +19,11 @@ module.exports = {
                         if (error) console.log(error)
                         else {
                             var arr_string = await results.map(r => r.name).join(', ')
+                            arr_string+='\n[see on website](http://yweelon.fr/GT_herosheet.php)'
                             emb.setDescription(arr_string);
                             emb.setAuthor(`Heroes on Database (${results.length})`);
-                            message.reply({ embeds: [emb] }).then(msg => { setTimeout(() => msg.delete(), 90000); })
+                            
+                            message.reply({ embeds: [emb] }).then(msg => { setTimeout(() => msg.delete(), client.configuration.cmd.timeout); })
                         }
                     });
             })
