@@ -1,5 +1,6 @@
 const {Translate} = require('@google-cloud/translate').v2;
-const projectId = 'AIzaSyDQyxS1cpeUB2eC3TyC_aAfzI0snj8HOaI';
+require('dotenv').config();
+let projectId = process.env.GOOGLE_PROJECTID
 const translate = new Translate({projectId});
 
 module.exports = {
@@ -18,3 +19,4 @@ module.exports = {
         }
     }
 }
+z
