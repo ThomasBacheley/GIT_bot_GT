@@ -18,7 +18,7 @@ module.exports = {
 
                 getBddconnection().then((connection) => {
                     connection.connect()
-                    connection.query(`SELECT DISTINCT heroes.name,ex_weapon.name as 'ex_weapon',ex_weapon.link as 'ex_weapon_link',ex_weapon.emote_type as 'ex_weapon_type',hero_pic,hero_type.type,hero_type.hexcode AS 'type_hexcode',hero_role.role,hero_role.emote AS 'role_emote',weapon,pp_link,hero_link from heroes LEFT JOIN ex_weapon ON heroes.weapon=ex_weapon.id LEFT JOIN hero_type ON heroes.type = hero_type.id LEFT JOIN hero_role ON heroes.role = hero_role.id WHERE heroes.name LIKE '%${args.join(' ')}%' OR heroes.nickname LIKE '%${args.join(' ')}%'`,
+                    connection.query(`SELECT DISTINCT heroes.name,ex_weapon.name as 'ex_weapon',party_buff.value as 'party_buff',ex_weapon.link as 'ex_weapon_link',ex_weapon.emote_type as 'ex_weapon_type',hero_pic,hero_type.type,hero_type.hexcode AS 'type_hexcode',hero_role.role,hero_role.emote AS 'role_emote',weapon,pp_link,hero_link,collaboration from heroes LEFT JOIN ex_weapon ON heroes.weapon=ex_weapon.id LEFT JOIN hero_type ON heroes.type = hero_type.id LEFT JOIN hero_role ON heroes.role = hero_role.id LEFT JOIN party_buff ON heroes.party_buff = party_buff.id WHERE heroes.name LIKE '%${args.join(' ')}%' OR heroes.nickname LIKE '%${args.join(' ')}%'`,
                         function (error, results, fields) {
                             if (error) console.log(error)
                             if (!results[0]) {
@@ -40,10 +40,15 @@ module.exports = {
                                 emb.setAuthor(`${results[0].name} (${results[0].type})`, null, results[0].hero_link);
                                 emb.setColor(results[0].type_hexcode);
                                 emb.addField('Role :', `${results[0].role} ${results[0].role_emote}`, true);
+                                emb.addField('Party Buff :', `${results[0].party_buff}`, true);
                                 emb.addField('Weapon :', `${results[0].ex_weapon} ${results[0].ex_weapon_type} ([?](${results[0].ex_weapon_link} "check the weapon on internet"))`, true);
 
                                 emb.setDescription('If you have modification suggestion, [click here](http://yweelon.fr/GT_updatehero.php?heroname=' + results[0].name.replace(' ', '_').replace(' ', '_').replace(' ', '_').replace(' ', '_').replace(' ', '_') + ')');
-                                // emb.setFooter('(PS: If you don\'t see the field `cards` or `accesory`, it\'s because they aren\'t informing !)')
+                                let footer = '(PS: If you don\'t see the field `cards` or `accesory`, it\'s because they aren\'t informing !)'
+                                if(results[0].collaboration){
+                                    footer+=' | this heros come from a collaboration'
+                                }
+                                emb.setFooter(footer);
 
                                 message.reply({ embeds: [emb] }).then(msg => { setTimeout(() => msg.delete(), client.configuration.cmd.timeout); })
                             }

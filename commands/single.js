@@ -10,6 +10,7 @@ module.exports = {
     async run(client, message, args) {
         try {
             setTimeout(() => message.delete(), 3000);
+            console.log('ping');
             await summon(message,false).then(resultat => {
                 var emb = new MessageEmbed()
                     .setTitle('Single')

@@ -69,11 +69,6 @@ async function query_build(hero, id_weapon) {
         }
 
 
-
-
-
-
-
         if (hero.accesory_name != 'NULL') {
 
 
@@ -164,6 +159,10 @@ async function query_build(hero, id_weapon) {
 
         }
 
+        if(hero.collaboration){
+            queryP1 += ',`collaboration`'
+            queryP2 += ',1'
+        }
 
 
         var q = queryP1 + ', `pp_link`, `hero_link`) ' + queryP2 + ',?,? )';
@@ -171,8 +170,6 @@ async function query_build(hero, id_weapon) {
 
 
         query_value.push(hero.pp_link.toString());
-
-
 
 
 

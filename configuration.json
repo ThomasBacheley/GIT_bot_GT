@@ -5,7 +5,7 @@
         "278198463785730050"
     ],
     "cmd": {
-        "timeout": 1800000,
+        "timeout": 900000,
         "cooldown": 10000
     },
     "AllowedChannelID": [

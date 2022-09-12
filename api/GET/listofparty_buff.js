@@ -1,15 +1,16 @@
 const router = require('express').Router();
 
-var getBddConnection = require('../../functions/getBddConnection')
+var getBddConnection = require('../../functions/getBddConnection');
 
 router.get('/', async (req, res) => {
     getBddConnection().then((connection) => {
         connection.connect()
-        connection.query(`SELECT DISTINCT (name),pp_link,collaboration from heroes ORDER BY name ASC`,
+        connection.query('SELECT value FROM `party_buff`',
             async function (error, results, fields) {
                 if (error) console.log(error)
                 else {
-                    res.send(results)
+                    var arr = await results.map(result => result.value);
+                    res.send(arr)
                 }
             });
     })
